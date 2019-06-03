@@ -1,6 +1,7 @@
 package br.ufrn.imd.impromptu;
 
 import static io.javalin.apibuilder.ApiBuilder.get;
+import static io.javalin.apibuilder.ApiBuilder.post;
 import static io.javalin.apibuilder.ApiBuilder.path;
 
 import java.util.function.Supplier;
@@ -12,6 +13,7 @@ import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 
 import br.ufrn.imd.impromptu.controllers.IndexController;
+import br.ufrn.imd.impromptu.controllers.JUnit4Controller;
 import br.ufrn.imd.impromptu.junit4.FirstUnitTest;
 import br.ufrn.imd.impromptu.junit5.JUnit5Daemon;
 import io.javalin.Javalin;
@@ -67,6 +69,11 @@ public class App
         	path("", () -> {
         		get(IndexController::index);
         	});
+        	
+        	path("junit4", () -> {
+        		post(JUnit4Controller::post);
+        	});
+        	
         	path("users", () -> {
         		get(IndexController::index);
         	});
