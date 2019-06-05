@@ -1,4 +1,4 @@
-package br.ufrn.imd.impromptu.controllers;
+package br.ufrn.imd.impromptu.actions;
 
 import io.javalin.Context;
 

@@ -12,8 +12,8 @@ import org.junit.platform.launcher.listeners.TestExecutionSummary;
 import org.junit.runner.JUnitCore;
 import org.junit.runner.Result;
 
-import br.ufrn.imd.impromptu.controllers.IndexController;
-import br.ufrn.imd.impromptu.controllers.JUnit4Controller;
+import br.ufrn.imd.impromptu.actions.IndexController;
+import br.ufrn.imd.impromptu.actions.JUnit4CompileAction;
 import br.ufrn.imd.impromptu.junit4.FirstUnitTest;
 import br.ufrn.imd.impromptu.junit5.JUnit5Daemon;
 import io.javalin.Javalin;
@@ -64,6 +64,8 @@ public class App
 	}
     
     private static void runJavalin() {
+    	JUnit4CompileAction jUnit4C = new JUnit4CompileAction();
+    	
     	Javalin app = Javalin.create().start(8000);
         app.routes(() -> {
         	path("", () -> {
@@ -71,12 +73,10 @@ public class App
         	});
         	
         	path("junit4", () -> {
-        		post(JUnit4Controller::post);
+        		post(jUnit4C);
         	});
         	
-        	path("users", () -> {
-        		get(IndexController::index);
-        	});
+        	
         });
     }
 }
