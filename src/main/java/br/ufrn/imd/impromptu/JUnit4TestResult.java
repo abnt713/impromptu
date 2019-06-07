@@ -7,17 +7,17 @@ import org.json.JSONObject;
 import org.junit.runner.Result;
 import org.junit.runner.notification.Failure;
 
-public class WrapperTestResult implements TestResult {
+public class JUnit4TestResult implements TestResult {
 
 	private final Result result;
 	private final boolean withOutput;
 	
-	public WrapperTestResult(Result result, boolean withOutput) {
+	public JUnit4TestResult(Result result, boolean withOutput) {
 		this.result = result;
 		this.withOutput = withOutput;
 	}
 	
-	public WrapperTestResult(Result result) {
+	public JUnit4TestResult(Result result) {
 		this(result, false);
 	}
 	

@@ -11,9 +11,9 @@ import org.junit.platform.launcher.listeners.TestExecutionSummary;
 public class JUnit5Daemon {
 	SummaryGeneratingListener listener = new SummaryGeneratingListener();
 
-	public TestExecutionSummary runFromClass() {
+	public TestExecutionSummary runFromClass(Class<?> className) {
 		LauncherDiscoveryRequest request = LauncherDiscoveryRequestBuilder.request()
-				.selectors(DiscoverySelectors.selectClass(SecondUnitTest.class)).build();
+				.selectors(DiscoverySelectors.selectClass(className)).build();
 		Launcher launcher = LauncherFactory.create();
 		launcher.discover(request);
 		launcher.registerTestExecutionListeners(listener);

@@ -8,7 +8,7 @@ import org.junit.runner.Result;
 import br.ufrn.imd.impromptu.JavaPatternsNotMatchingException;
 import br.ufrn.imd.impromptu.TestResult;
 import br.ufrn.imd.impromptu.TextClassCode;
-import br.ufrn.imd.impromptu.WrapperTestResult;
+import br.ufrn.imd.impromptu.JUnit4TestResult;
 import io.javalin.Context;
 import io.javalin.Handler;
 
@@ -27,7 +27,7 @@ public class JUnit4CompileAction implements Handler {
 			Result result = this.runJUnit4(textClass);
 			System.out.println(result.getFailureCount());
 			
-			TestResult testResult = new WrapperTestResult(result);
+			TestResult testResult = new JUnit4TestResult(result);
 			
 			ctx.result(testResult.serialize());
 		} catch (ReflectException e) {
@@ -44,7 +44,7 @@ public class JUnit4CompileAction implements Handler {
 		// a good idea let the reference to this live only
 		// in this scope
 		JUnitCore junit = new JUnitCore();
-		junit.addListener(new TextListener(System.out));
+//		junit.addListener(new TextListener(System.out));
 		return junit.run(textClass.getCodeClass());		
 	}
 	
